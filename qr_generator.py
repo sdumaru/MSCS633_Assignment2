@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reference: https://pypi.org/project/qrcode/
 """
 qr_generator.py
 
@@ -17,7 +18,7 @@ OUTPUT_FILE = "biox_qr-code.png"                # Output file to save QR Code
 def main():
     # Configure QR code
     qr = qrcode.QRCode(
-        version=None,  # automatic sizing
+        version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_M,
         box_size=10,
         border=4,
@@ -27,6 +28,10 @@ def main():
 
     # Render and save
     img = qr.make_image(fill_color="black", back_color="white")
+    # Save QR Code to the output file mentioned above
+    img.save(OUTPUT_FILE)
+
+    print(f"[Biox Systems] QR Code for {BIOX_URL} saved as {OUTPUT_FILE}")
 
 if __name__ == "__main__":
     main()
